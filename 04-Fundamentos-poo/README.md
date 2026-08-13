@@ -52,3 +52,5 @@ Para um aproveitamento excelente do conteúdo desta unidade, recomenda-se:
 | :---: | :--- | :---: |
 | **📄 PDF** | *Fundamentos de Orientação a Objetos* | [Aula 5](./Aula-5-abstracao-classe-objeto.pdf?raw=true) |
 | **🖥️ Exercicios ** | Exercícios | [Exercícios](./Exercícios/Exercícios_3.pdf?raw=true)|
+| **📄 PDF** | *Encapsulamento com modificadores de acesso, construtores e sobrecarga de métodos* | [Aula 6](./Aula_6_sobrecarga_encapsulamento_construtores.pdf?raw=true) |
+| **🖥️ Exercicios ** | Exercícios | [Exercícios](./Exercícios/Exercícios_4.pdf?raw=true)|
