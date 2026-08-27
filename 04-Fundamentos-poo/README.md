@@ -51,11 +51,11 @@ Para um aproveitamento excelente do conteúdo desta unidade, recomenda-se:
 | Tipo | Referência / Descrição | Acesso |
 | :---: | :--- | :---: |
 | **📄 PDF** | *Fundamentos de Orientação a Objetos* | [Aula 5](./Aula-5-abstracao-classe-objeto.pdf?raw=true) |
-| **🖥️ Exercicios ** | Exercícios | [Exercícios](./Exercícios/Exercícios_3.pdf?raw=true)|
+| **🖥️ Exercicios** | Exercícios | [Exercícios](./Exercícios/Exercícios_3.pdf?raw=true)|
 | **📄 PDF** | *Encapsulamento com modificadores de acesso, construtores e sobrecarga de métodos* | [Aula 6](./Aula-6-sobrecarga-encapsulamento-construtores.pdf?raw=true) |
-| **🖥️ Exercicios ** | Exercícios | [Exercícios](./Exercícios/Exercícios_4.pdf?raw=true)|
+| **🖥️ Exercicios** | Exercícios | [Exercícios](./Exercícios/Exercícios_4.pdf?raw=true)|
 | **📄 PDF** | *Outros métodos e Herença* | [Aula 7](./Aula-7-outros-metodos-herança.pdf?raw=true) |
-| **🖥️ Exercicios ** | Exercícios | [Exercícios](./Exercícios/Exercícios_5.pdf?raw=true)|
+| **🖥️ Exercicios** | Exercícios | [Exercícios](./Exercícios/Exercícios_5.pdf?raw=true)|
 | **📄 PDF** | *Outros relacionamentos* | [Aula 8](./Aula-8-outros-relacionamentos.pdf?raw=true) |
-| **🖥️ Exemplos ** | Exemplo de relacionamentos | [Exemplos](./Exemplos/Comercio)|
-| **🖥️ Exercicios ** | Exercícios | [Exercícios](./Exercícios/Exercícios_6.pdf?raw=true)|
+| **🖥️ Exemplos** | Exemplo de relacionamentos | [Exemplos](./Exemplos/Comercio)|
+| **🖥️ Exercicios** | Exercícios | [Exercícios](./Exercícios/Exercícios_6.pdf?raw=true)|
