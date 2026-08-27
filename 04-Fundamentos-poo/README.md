@@ -56,3 +56,6 @@ Para um aproveitamento excelente do conteúdo desta unidade, recomenda-se:
 | **🖥️ Exercicios ** | Exercícios | [Exercícios](./Exercícios/Exercícios_4.pdf?raw=true)|
 | **📄 PDF** | *Outros métodos e Herença* | [Aula 7](./Aula-7-outros-metodos-herança.pdf?raw=true) |
 | **🖥️ Exercicios ** | Exercícios | [Exercícios](./Exercícios/Exercícios_5.pdf?raw=true)|
+| **📄 PDF** | *Outros relacionamentos* | [Aula 8](./Aula-8-outros-relacionamentos.pdf?raw=true) |
+| **🖥️ Exemplos ** [Exemplos](./Exemplos/Comercio)|
+| **🖥️ Exercicios ** | Exercícios | [Exercícios](./Exercícios/Exercícios_6.pdf?raw=true)|
