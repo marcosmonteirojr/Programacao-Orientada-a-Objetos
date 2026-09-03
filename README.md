@@ -16,4 +16,5 @@ Repositório oficial da disciplina de Programação Orientada a Objetos (POO) do
 | **02** | [Introdução à Java - Programação básica](/02-Programacao-Java) | Programação básica em Java e configuração do ambiente |
 | **03** | [Histórico e introdução a POO](/03-Histórico-e-introducao-a-poo) | Histórico e introdução a POO | 
 | **04** | [Fundamentos a Programação Orientada a Objetos](/04-Fundamentos-poo) | Fundamentos de POO |
+| **05** | [Mecanismos de abstração e organização de projeto](/05-Mecanismos-de-abstracao) | Mecanismos de abstração |
 
