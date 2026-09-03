@@ -51,5 +51,5 @@ Para um aproveitamento excelente do conteúdo desta unidade, recomenda-se:
 
 | Tipo | Referência / Descrição | Acesso |
 | :---: | :--- | :---: |
-| **📄 PDF** | *Estratégias de abstração* | [Aula o](./Aula-9-estrategias-de-abstracao.pdf?raw=true) |
+| **📄 PDF** | *Estratégias de abstração* | [Aula 9](./Aula-9-estrategias-de-abstracao.pdf?raw=true) |
 | **🖥️ Exercícios** | Exercícios | [Exercícios](./Exercícios/Exercícios_7.pdf?raw=true) |
