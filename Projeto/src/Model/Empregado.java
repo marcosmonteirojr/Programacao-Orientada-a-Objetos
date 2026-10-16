@@ -7,8 +7,7 @@ public abstract class Empregado {
     protected int cpf;
     protected double salario;
 
-    public Empregado(int codigo, String nome, String cargo, int cpf, double salario) {
-       this.codigo = codigo;
+    public Empregado(String nome, String cargo, int cpf, double salario) {
         this.nome = nome;
         this.cargo = cargo;
         this.cpf = cpf;

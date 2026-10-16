@@ -9,9 +9,7 @@ public class SecretariaDAO {
 
     // 1. CREATE (Inserir)
     public void inserir(Secretaria secretaria) {
-        // SQL para a tabela mãe
-        String sqlFuncionario = "INSERT INTO funcionario (nome, cargo, telefone, cpf, salario) VALUES (?, ?, ?, ?, ?)";
-        // SQL para a tabela filha
+        String sqlFuncionario = "INSERT INTO funcionario (nome, cargo, cpf, salario) VALUES (?, ?, ?, ?)";
         String sqlSecretaria = "INSERT INTO secretaria (codigo) VALUES (?)";
 
         Connection conn = null;
@@ -27,7 +25,6 @@ public class SecretariaDAO {
             try (PreparedStatement stmtFunc = conn.prepareStatement(sqlFuncionario, Statement.RETURN_GENERATED_KEYS)) {
                 stmtFunc.setString(1, secretaria.getNome());
                 stmtFunc.setString(2, "Secretária"); // Cargo fixo para este DAO
-                stmtFunc.setString(3, "TelefoneAqui"); // Supondo que tenha telefone no modelo
                 stmtFunc.setInt(4, secretaria.getCpf());
                 stmtFunc.setDouble(5, secretaria.getSalario());
 
@@ -76,12 +73,12 @@ public class SecretariaDAO {
             while (rs.next()) {
                 // Instancia a secretária com os dados vindos do banco
                 Secretaria sec = new Secretaria(
-                        rs.getInt("codigo"),
                         rs.getString("nome"),
                         rs.getString("cargo"),
                         rs.getInt("cpf"),
                         rs.getDouble("salario")
                 );
+                sec.setCodigo(rs.getInt("codigo"));
                 lista.add(sec);
             }
 
