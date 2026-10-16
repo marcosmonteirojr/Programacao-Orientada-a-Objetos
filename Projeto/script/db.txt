@@ -1,0 +1,177 @@
+-- Criação do Banco de Dados
+CREATE DATABASE IF NOT EXISTS clinica_veterinaria;
+USE clinica_veterinaria;
+
+-- 1. Tabela FUNCIONARIO (Superclasse)
+CREATE TABLE funcionario (
+    codigo INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(120) NOT NULL,
+    cargo VARCHAR(80) NOT NULL,
+    telefone VARCHAR(20) NOT NULL,
+    cpf VARCHAR(14) NOT NULL UNIQUE,
+    salario DECIMAL(10,2) NOT NULL
+);
+
+-- 2. Tabela SECRETARIA (Subclasse de Funcionario)
+CREATE TABLE secretaria (
+    codigo INT PRIMARY KEY,
+    CONSTRAINT fk_secretaria_funcionario FOREIGN KEY (codigo) REFERENCES funcionario(codigo) ON DELETE CASCADE
+);
+
+-- 3. Tabela MEDICO_VETERINARIO (Subclasse de Funcionario)
+CREATE TABLE medico_veterinario (
+    codigo INT PRIMARY KEY,
+    crmv VARCHAR(20) NOT NULL,
+    especialidade VARCHAR(100) NOT NULL,
+    CONSTRAINT fk_veterinario_funcionario FOREIGN KEY (codigo) REFERENCES funcionario(codigo) ON DELETE CASCADE
+);
+
+-- 4. Tabela DEMAIS_FUNCIONARIOS (Subclasse de Funcionario)
+CREATE TABLE demais_funcionarios (
+    codigo INT PRIMARY KEY,
+    descricao_funcao VARCHAR(100) NOT NULL,
+    CONSTRAINT fk_demais_funcionario FOREIGN KEY (codigo) REFERENCES funcionario(codigo) ON DELETE CASCADE
+);
+
+-- 5. Tabela CLIENTE
+CREATE TABLE cliente (
+    codigo INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(120) NOT NULL,
+    endereco VARCHAR(200) NOT NULL,
+    telefone VARCHAR(20) NOT NULL,
+    cpf VARCHAR(14) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- 6. Tabela ESPECIE
+CREATE TABLE especie (
+    codigo INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(80) NOT NULL,
+    descricao TEXT NOT NULL
+);
+
+-- 7. Tabela RACA
+CREATE TABLE raca (
+    codigo INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(80) NOT NULL,
+    descricao TEXT NOT NULL,
+    especie_id INT NOT NULL,
+    CONSTRAINT fk_raca_especie FOREIGN KEY (especie_id) REFERENCES especie(codigo)
+);
+
+-- 8. Tabela ANIMAL
+CREATE TABLE animal (
+    codigo INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    especie_id INT NOT NULL,
+    raca_id INT NOT NULL,
+    cliente_id INT NOT NULL,
+    idade INT NOT NULL,
+    peso DECIMAL(6,2) NOT NULL,
+    sexo CHAR(1) NOT NULL, -- 'M' ou 'F'
+    cor VARCHAR(50) NOT NULL,
+    CONSTRAINT fk_animal_especie FOREIGN KEY (especie_id) REFERENCES especie(codigo),
+    CONSTRAINT fk_animal_raca FOREIGN KEY (raca_id) REFERENCES raca(codigo),
+    CONSTRAINT fk_animal_cliente FOREIGN KEY (cliente_id) REFERENCES cliente(codigo)
+);
+
+-- 9. Tabela TRATAMENTO
+CREATE TABLE tratamento (
+    codigo INT AUTO_INCREMENT PRIMARY KEY,
+    data_inicio DATE NOT NULL,
+    data_fim DATE NOT NULL,
+    status VARCHAR(30) NOT NULL,
+    descricao TEXT NOT NULL
+);
+
+-- 10. Tabela EXAME
+CREATE TABLE exame (
+    codigo INT AUTO_INCREMENT PRIMARY KEY,
+    tipo VARCHAR(80) NOT NULL,
+    data_pedido DATE NOT NULL,
+    data_resultado DATE NOT NULL,
+    resultado TEXT NOT NULL,
+    observacoes TEXT NOT NULL,
+    sessao_id INT NOT NULL,
+    animal_id INT NOT NULL,
+    CONSTRAINT fk_exame_animal FOREIGN KEY (animal_id) REFERENCES animal(codigo)
+    -- Nota: A chave estrangeira para sessao_id será adicionada após a criação da tabela consulta_sessao,
+    -- pois há uma referência cruzada circular no modelo.
+);
+
+-- 11. Tabela VACINA
+CREATE TABLE vacina (
+    codigo INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    fabricante VARCHAR(100) NOT NULL,
+    lote VARCHAR(50) NOT NULL,
+    validade DATE NOT NULL
+);
+
+-- 12. Tabela VERMÍFUGO
+CREATE TABLE vermifugo (
+    codigo INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    fabricante VARCHAR(100) NOT NULL,
+    lote VARCHAR(50) NOT NULL,
+    validade DATE NOT NULL
+);
+
+-- 13. Tabela CONSULTA / SESSÃO
+CREATE TABLE consulta_sessao (
+    codigo INT AUTO_INCREMENT PRIMARY KEY,
+    data DATE NOT NULL,
+    hora TIME NOT NULL,
+    sintomas TEXT NOT NULL,
+    diagnostico TEXT NOT NULL,
+    observacoes TEXT NOT NULL,
+    secretaria_id INT NOT NULL,
+    veterinario_id INT NOT NULL,
+    animal_id INT NOT NULL,
+    tratamento_id INT NOT NULL,
+    CONSTRAINT fk_consulta_secretaria FOREIGN KEY (secretaria_id) REFERENCES secretaria(codigo),
+    CONSTRAINT fk_consulta_veterinario FOREIGN KEY (veterinario_id) REFERENCES medico_veterinario(codigo),
+    CONSTRAINT fk_consulta_animal FOREIGN KEY (animal_id) REFERENCES animal(codigo),
+    CONSTRAINT fk_consulta_tratamento FOREIGN KEY (tratamento_id) REFERENCES tratamento(codigo)
+);
+
+-- Ajuste tardio para a chave estrangeira de sessao_id na tabela exame
+ALTER TABLE exame
+ADD CONSTRAINT fk_exame_sessao FOREIGN KEY (sessao_id) REFERENCES consulta_sessao(codigo);
+
+-- 14. Tabela VACINAÇÃO
+CREATE TABLE vacinacao (
+    codigo INT AUTO_INCREMENT PRIMARY KEY,
+    data DATE NOT NULL,
+    dose VARCHAR(30) NOT NULL,
+    proxima_dose DATE NOT NULL,
+    vacina_id INT NOT NULL,
+    animal_id INT NOT NULL,
+    CONSTRAINT fk_vacinacao_vacina FOREIGN KEY (vacina_id) REFERENCES vacina(codigo),
+    CONSTRAINT fk_vacinacao_animal FOREIGN KEY (animal_id) REFERENCES animal(codigo)
+);
+
+-- 15. Tabela VERMIFUGAÇÃO
+CREATE TABLE vermifugacao (
+    codigo INT AUTO_INCREMENT PRIMARY KEY,
+    data DATE NOT NULL,
+    dose VARCHAR(30) NOT NULL,
+    proxima_dose DATE NOT NULL,
+    vermifugo_id INT NOT NULL,
+    animal_id INT NOT NULL,
+    CONSTRAINT fk_vermifugacao_vermifugo FOREIGN KEY (vermifugo_id) REFERENCES vermifugo(codigo),
+    CONSTRAINT fk_vermifugacao_animal FOREIGN KEY (animal_id) REFERENCES animal(codigo)
+);
+
+-- 16. Tabela CONTA A RECEBER
+CREATE TABLE conta_a_receber (
+    codigo INT AUTO_INCREMENT PRIMARY KEY,
+    valor DECIMAL(10,2) NOT NULL,
+    data_emissao DATE NOT NULL,
+    data_vencimento DATE NOT NULL,
+    status_pagamento VARCHAR(30) NOT NULL,
+    sessao_id INT NOT NULL,
+    cliente_id INT NOT NULL,
+    CONSTRAINT fk_conta_sessao FOREIGN KEY (sessao_id) REFERENCES consulta_sessao(codigo),
+    CONSTRAINT fk_conta_cliente FOREIGN KEY (cliente_id) REFERENCES cliente(codigo)
+);
