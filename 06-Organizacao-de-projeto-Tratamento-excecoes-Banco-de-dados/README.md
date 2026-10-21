@@ -50,5 +50,6 @@ Para um aproveitamento excelente do conteúdo desta unidade, recomenda-se:
 
 | Tipo | Referência / Descrição | Acesso |
 | :---: | :--- | :---: |
-| **📄 PDF** | *Estratégias de abstração* | [Aula 9](./Aula-9-estrategias-de-abstracao.pdf?raw=true) |
-| **🖥️ Exercícios** | Exercícios | [Exercícios](./Exercícios/Exercícios_7.pdf?raw=true) |
+| **📄 PDF** | *Tratamento de exceções* | [Aula 10](./Aula10-Tratamento-excecoes.pdf?raw=true) |
+| **🖥️ Exercícios** | Exercícios | [Exercícios](./Exercícios/Exercícios_8.pdf?raw=true) |
+| **📄 PDF** | *Conexão com banco de dados* | [Aula 11](./Aula11-Conexao-com-banco-de-dados.pdf?raw=true) |
