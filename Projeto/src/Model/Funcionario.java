@@ -1,23 +1,35 @@
 package Model;
 
-public abstract class Empregado {
+public abstract class Funcionario {
     protected int codigo;
     protected String nome;
     protected String cargo;
-    protected int cpf;
+    protected String cpf;
     protected double salario;
 
-    public Empregado(String nome, String cargo, int cpf, double salario) {
+    public Funcionario(int codigo, String nome, String cargo, String cpf, double salario) {
+        this.codigo = codigo;
         this.nome = nome;
         this.cargo = cargo;
         this.cpf = cpf;
         this.salario = salario;
     }
-    public int getCodigo() { return codigo; }
-    public void setCodigo(int codigo) { this.codigo = codigo; }
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
     public String getCargo() {
         return cargo;
@@ -27,11 +39,11 @@ public abstract class Empregado {
         this.cargo = cargo;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

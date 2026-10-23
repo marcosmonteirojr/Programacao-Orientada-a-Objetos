@@ -1,21 +1,21 @@
 package Model;
 
-public class MedicoVeterinario extends Empregado{
-    private String crm;
+public class MedicoVeterinario extends Funcionario {
+    private String crmv;
     private String especialidade;
 
-    public MedicoVeterinario(int codigo, String nome, String cargo, int cpf, double salario, String crm, String especialidade) {
+    public MedicoVeterinario(int codigo, String nome, String cargo, String cpf, double salario, String crmv, String especialidade) {
         super(codigo, nome, cargo, cpf, salario);
-        this.crm = crm;
+        this.crmv = crmv;
         this.especialidade = especialidade;
     }
 
-    public String getCrm() {
-        return crm;
+    public String getCrmv() {
+        return crmv;
     }
 
-    public void setCrm(String crm) {
-        this.crm = crm;
+    public void setCrmv(String crmv) {
+        this.crmv = crmv;
     }
 
     public String getEspecialidade() {

@@ -25,15 +25,15 @@ public class SecretariaDAO {
             try (PreparedStatement stmtFunc = conn.prepareStatement(sqlFuncionario, Statement.RETURN_GENERATED_KEYS)) {
                 stmtFunc.setString(1, secretaria.getNome());
                 stmtFunc.setString(2, "Secretária"); // Cargo fixo para este DAO
-                stmtFunc.setInt(4, secretaria.getCpf());
-                stmtFunc.setDouble(5, secretaria.getSalario());
+                stmtFunc.setString(3, secretaria.getCpf());
+                stmtFunc.setDouble(4, secretaria.getSalario());
 
                 stmtFunc.executeUpdate();
 
                 // Pega o ID (código) que o banco gerou
                 try (ResultSet rs = stmtFunc.getGeneratedKeys()) {
                     if (rs.next()) {
-                        idGerado = rs.getInt(1);
+                        idGerado = rs.getInt("codigo");
                         secretaria.setCodigo(idGerado); // Atualiza o objeto Java com o novo ID
                     }
                 }
@@ -62,7 +62,7 @@ public class SecretariaDAO {
     public List<Secretaria> listar() {
         List<Secretaria> lista = new ArrayList<>();
         // O JOIN garante que só vamos trazer os funcionários que também estão na tabela secretaria
-        String sql = "SELECT f.codigo, f.nome, f.cpf, f.salario " +
+        String sql = "SELECT f.codigo, f.nome, f.cargo, f.cpf, f.salario " +
                 "FROM funcionario f " +
                 "INNER JOIN secretaria s ON f.codigo = s.codigo";
 
@@ -73,12 +73,12 @@ public class SecretariaDAO {
             while (rs.next()) {
                 // Instancia a secretária com os dados vindos do banco
                 Secretaria sec = new Secretaria(
+                        rs.getInt("codigo"),
                         rs.getString("nome"),
                         rs.getString("cargo"),
-                        rs.getInt("cpf"),
+                        rs.getString("cpf"),
                         rs.getDouble("salario")
                 );
-                sec.setCodigo(rs.getInt("codigo"));
                 lista.add(sec);
             }
 
@@ -91,15 +91,16 @@ public class SecretariaDAO {
     // 3. UPDATE (Atualizar)
     public void atualizar(Secretaria secretaria) {
         // A atualização ocorre apenas na tabela mãe, pois a tabela filha só tem o ID
-        String sql = "UPDATE funcionario SET nome = ?, cpf = ?, salario = ? WHERE codigo = ?";
+        String sql = "UPDATE funcionario SET nome = ?, cpf = ?, cargo = ?, salario = ? WHERE codigo = ?";
 
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, secretaria.getNome());
-            stmt.setInt(2, secretaria.getCpf());
-            stmt.setDouble(3, secretaria.getSalario());
-            stmt.setInt(4, secretaria.getCodigo());
+            stmt.setString(2, secretaria.getCpf());
+            stmt.setString(3, secretaria.getCargo());
+            stmt.setDouble(4, secretaria.getSalario());
+            stmt.setInt(5, secretaria.getCodigo());
 
             int linhasAfetadas = stmt.executeUpdate();
             if (linhasAfetadas > 0) {

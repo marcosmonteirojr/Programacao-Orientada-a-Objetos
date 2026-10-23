@@ -1,10 +1,11 @@
 package Model;
 
-public class Secretaria extends Empregado {
-private int codigo;
+public class Secretaria extends Funcionario {
+    private int codigo;
+
     // O construtor recebe os dados e os envia para a classe mãe gerenciar
-    public Secretaria(String nome,String cargo, int cpf, double salario) {
-        super(nome, cargo, cpf, salario);
+    public Secretaria(int codigo, String nome, String cargo, String cpf, double salario) {
+        super(codigo, nome, cargo, cpf, salario);
     }
 
     // Comportamentos (métodos) exclusivos da Secretária
