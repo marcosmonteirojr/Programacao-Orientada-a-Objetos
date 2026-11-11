@@ -1,6 +1,6 @@
 # Objetivo do Trabalho
 Desenvolver uma aplicação orientada a objetos (utilizando qualquer linguagem de programação), aplicando conceitos avançados de POO, separação de responsabilidades com o padrão **MVC (Model-View-Controller)**, persistência de dados utilizando o padrão **DAO (Data Access Object)** e banco de dados relacional com **duas tabelas relacionadas** contendo **CRUD completo**.
-
+**Data de entrega: 25/11 ou 26/11 dependendo da turma**
 **Para isso vocês vão utilizar a startup/projeto integrador**
 ---
 
